@@ -1,63 +1,130 @@
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f6f9;
+/* ================= RESET ================= */
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f2f4f8;
+}
+
+/* ================= CONTAINER ================= */
 .container {
-  max-width: 420px;
-  margin: 40px auto;
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
+  min-height: 100vh;
+  background: #ffffff;
+  padding: 16px;
 }
 
 h2 {
   text-align: center;
+  margin-bottom: 16px;
+  color: #2c3e50;
 }
 
+/* ================= INPUT ================= */
 input {
-  width: 90%;
-  padding: 10px;
-  margin-bottom: 10px;
+  width: 100%;
+  max-width: 420px;
+  padding: 14px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin: 0 auto 12px auto;
+  display: block;
+  text-align: center;
 }
 
+/* ================= BUTTON (ANTI BUG HP) ================= */
 button {
-  button {
   width: 100%;
+  max-width: 420px;
   padding: 14px;
-  margin-bottom: 10px;
+  margin: 0 auto 10px auto;
+  display: block;
 
-  /* INI KUNCI UTAMA */
+  /* KUNCI WARNA DI HP */
   -webkit-appearance: none;
   appearance: none;
 
   border: none;
   border-radius: 8px;
   font-size: 15px;
+  font-weight: bold;
   color: #ffffff;
   cursor: pointer;
+
   background-color: #999;
 }
 
+/* WARNA TOMBOL */
+button.btn-search { background-color: #007bff !important; }
+button.btn-scan   { background-color: #28a745 !important; }
+button.btn-report { background-color: #dc3545 !important; }
+button.btn-list   { background-color: #6f42c1 !important; }
 
-/* tombol */
-button:nth-child(3) { background: #007bff; } /* Cari */
-.scan-btn { background: #28a745; }
-.report-btn { background: #dc3545; }
-.list-btn { background: #6f42c1; }
+button:active {
+  opacity: 0.85;
+}
 
+/* ================= SCANNER ================= */
 #reader {
   display: none;
-  margin: 10px 0;
+  margin-top: 15px;
 }
 
+/* ================= CARD HASIL ================= */
 .card {
-  background: #e9ecef;
-  padding: 15px;
-  border-radius: 5px;
+  margin-top: 16px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-.error {
-  color: red;
+.card-header {
+  background-color: #007bff;
+  color: #fff;
+  padding: 12px;
   text-align: center;
+  font-weight: bold;
+}
+
+.card-body {
+  padding: 14px;
+}
+
+.row {
+  margin-bottom: 10px;
+}
+
+.label {
+  font-size: 13px;
+  color: #666;
+}
+
+.value {
+  font-size: 15px;
+  font-weight: bold;
+  word-break: break-word;
+}
+
+/* ================= ERROR ================= */
+.error {
+  margin-top: 15px;
+  padding: 12px;
+  background: #fdecea;
+  color: #b71c1c;
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* ================= MODE PC ================= */
+@media (min-width: 768px) {
+  .container {
+    max-width: 480px;
+    margin: 40px auto;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  }
 }
