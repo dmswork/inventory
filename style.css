@@ -4,7 +4,7 @@ body {
 }
 
 .container {
-  max-width: 400px;
+  max-width: 420px;
   margin: 40px auto;
   background: #fff;
   padding: 20px;
@@ -26,15 +26,16 @@ button {
   padding: 10px;
   margin-bottom: 10px;
   border: none;
-  background: #007bff;
   color: #fff;
   cursor: pointer;
   border-radius: 4px;
 }
 
-.scan-btn {
-  background: #28a745;
-}
+/* tombol */
+button:nth-child(3) { background: #007bff; } /* Cari */
+.scan-btn { background: #28a745; }
+.report-btn { background: #dc3545; }
+.list-btn { background: #6f42c1; }
 
 #reader {
   display: none;
@@ -50,11 +51,4 @@ button {
 .error {
   color: red;
   text-align: center;
-}
-.report-btn {
-  background: #dc3545; /* merah */
-}
-
-.list-btn {
-  background: #6f42c1; /* ungu */
 }
