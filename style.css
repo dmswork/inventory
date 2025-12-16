@@ -3,108 +3,111 @@
 }
 
 body {
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: #eef2f7;
+  font-family: Arial, sans-serif;
+  background: #f2f4f8;
   margin: 0;
+  padding: 0;
 }
 
+/* ===== MOBILE FIRST ===== */
 .container {
-  max-width: 460px;
-  margin: 40px auto;
+  max-width: 100%;
   background: #fff;
-  padding: 24px;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  min-height: 100vh;
+  padding: 16px;
 }
 
 h2 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
+/* INPUT */
 input {
   width: 100%;
   padding: 12px;
+  font-size: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
   margin-bottom: 12px;
-  border-radius: 8px;
-  border: 1px solid #dcdfe6;
+  text-align: center;
 }
 
-/* ===== BUTTON BASE ===== */
-button {
+/* BUTTON */
+.btn {
   width: 100%;
   padding: 12px;
   margin-bottom: 10px;
   border: none;
-  border-radius: 8px;
-  color: #fff;
+  border-radius: 6px;
   font-size: 15px;
+  color: #fff;
   cursor: pointer;
 }
 
-/* ===== BUTTON COLOR ===== */
-.btn-search { background: #007bff; }
-.btn-scan   { background: #28a745; }
-.btn-report { background: #dc3545; }
-.btn-list   { background: #6f42c1; }
+.search { background: #007bff; }
+.scan   { background: #28a745; }
+.report { background: #dc3545; }
+.list   { background: #6f42c1; }
 
-button:hover {
-  opacity: 0.9;
-}
-
-/* ===== SCANNER ===== */
 #reader {
   display: none;
-  margin: 15px 0;
+  margin-top: 15px;
 }
 
-/* ===== RESULT CARD ===== */
+/* RESULT CARD */
 .card {
-  margin-top: 20px;
-  border-radius: 12px;
-  border: 1px solid #e3e6ea;
+  margin-top: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   overflow: hidden;
 }
 
 .card-header {
   background: #007bff;
   color: #fff;
-  padding: 12px;
-  font-weight: bold;
+  padding: 10px;
   text-align: center;
+  font-weight: bold;
 }
 
 .card-body {
-  padding: 16px;
+  padding: 12px;
 }
 
-.data-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 8px 0;
-  border-bottom: 1px dashed #ddd;
-}
-
-.data-row:last-child {
-  border-bottom: none;
+.row {
+  margin-bottom: 8px;
 }
 
 .label {
-  font-weight: 600;
-  color: #6c757d;
+  font-size: 13px;
+  color: #666;
 }
 
 .value {
-  color: #2c3e50;
-  text-align: right;
-  max-width: 60%;
+  font-size: 14px;
+  font-weight: 600;
+  word-break: break-word;
 }
 
+/* ERROR */
 .error {
   margin-top: 15px;
   padding: 12px;
   background: #fdecea;
   color: #b71c1c;
-  border-radius: 8px;
+  border-radius: 6px;
   text-align: center;
+}
+
+/* ===== PC / LAPTOP ===== */
+@media (min-width: 768px) {
+
+  .container {
+    max-width: 480px;
+    margin: 40px auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  }
+
 }
