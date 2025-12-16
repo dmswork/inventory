@@ -39,41 +39,18 @@ function cariAset() {
   const data = dataAset.find(d => d.req_id === reqid);
 
   hasil.innerHTML = data
-  ? `
-    <div class="card">
-      <div class="card-header">
-        DETAIL ASET
+    ? `
+      <div class="card">
+        <p><b>REQ_ID:</b> ${data.req_id}</p>
+        <p><b>ENTITY:</b> ${data.entity}</p>
+        <p><b>ENTITY NAME:</b> ${data.entity_name}</p>
+        <p><b>DEPT:</b> ${data.dept}</p>
+        <p><b>DESKRIPSI:</b> ${data.desc}</p>
+        <p><b>BRAND:</b> ${data.brand}</p>
       </div>
-      <div class="card-body">
-        <div class="data-row">
-          <div class="label">REQ ID</div>
-          <div class="value">${data.req_id}</div>
-        </div>
-        <div class="data-row">
-          <div class="label">Entity</div>
-          <div class="value">${data.entity}</div>
-        </div>
-        <div class="data-row">
-          <div class="label">Entity Name</div>
-          <div class="value">${data.entity_name}</div>
-        </div>
-        <div class="data-row">
-          <div class="label">Departemen</div>
-          <div class="value">${data.dept}</div>
-        </div>
-        <div class="data-row">
-          <div class="label">Deskripsi</div>
-          <div class="value">${data.desc}</div>
-        </div>
-        <div class="data-row">
-          <div class="label">Brand</div>
-          <div class="value">${data.brand}</div>
-        </div>
-      </div>
-    </div>
-  `
-  : `<div class="error">Data tidak ditemukan</div>`;
-
+    `
+    : `<div class="error">Data tidak ditemukan</div>`;
+}
 
 // ================================
 // SCAN BARCODE
