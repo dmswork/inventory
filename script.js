@@ -95,3 +95,22 @@ window.onload = function () {
     cariAset();
   }
 };
+// ================================
+// BUKA FORM LAPORAN KERUSAKAN
+// ================================
+function bukaLaporan() {
+  window.open(
+    "https://docs.google.com/forms/d/e/1FAIpQLSfNmNSnM3ywD-7QbuQ6h6hAI1xx9P6sbruGXKYGrbn3Y37GPA/viewform",
+    "_blank"
+  );
+}
+
+// ================================
+// BUKA DAFTAR BARANG
+// ================================
+function bukaDaftar() {
+  window.open(
+    "https://docs.google.com/spreadsheets/d/1fXFZYyHJnhDpVaMJ8P5UjjZdVe5mYwzz7rxoMmvoHCQ/edit?gid=989863131#gid=989863131",
+    "_blank"
+  );
+}
