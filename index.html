@@ -1,17 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
+  <meta charset="UTF-8">
   <title>Inventory Aset</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h2>Inventory Aset</h2>
+  <div class="container">
+    <h2>Inventory Aset</h2>
 
-<input type="text" id="reqid" placeholder="Scan / Masukkan REQ_ID">
-<button onclick="cariAset()">Cari</button>
+    <div class="scan-box">
+      <input
+        type="text"
+        id="reqid"
+        placeholder="Scan / Masukkan REQ_ID"
+        autofocus
+        onkeydown="if(event.key==='Enter') cariAset()"
+      >
+      <button onclick="cariAset()">Cari</button>
+    </div>
 
-<div id="hasil"></div>
+    <div id="hasil"></div>
 
-<script src="script.js"></script>
+    <div class="footer">
+      Asset Inventory System
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
