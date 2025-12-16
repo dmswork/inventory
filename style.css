@@ -113,3 +113,61 @@ button:hover { opacity: 0.92; }
   border-radius: 8px;
   text-align: center;
 }
+/* ===============================
+   MOBILE FIX (HP)
+================================ */
+@media (max-width: 600px) {
+
+  .container {
+    margin: 12px;
+    padding: 16px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  input {
+    max-width: 100%;
+    font-size: 14px;
+  }
+
+  button {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .card {
+    margin-top: 15px;
+  }
+
+  .card-header {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .card-body {
+    padding: 12px;
+  }
+
+  .data-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .label {
+    font-size: 13px;
+    margin-bottom: 2px;
+  }
+
+  .value {
+    font-size: 14px;
+    max-width: 100%;
+    text-align: left;
+    word-break: break-word;
+  }
+
+  #reader {
+    width: 100% !important;
+  }
+}
