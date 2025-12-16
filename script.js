@@ -35,17 +35,18 @@ function cariAset() {
     return;
   }
 
+  // Versi lebih rapi dengan tabel
   hasil.innerHTML = `
   <div class="card">
     <div class="card-header">DETAIL ASET</div>
-    <div class="card-body">
-      <div class="row"><div class="label">REQ ID</div><div class="value">${d.req}</div></div>
-      <div class="row"><div class="label">Entity</div><div class="value">${d.entity}</div></div>
-      <div class="row"><div class="label">Nama</div><div class="value">${d.name}</div></div>
-      <div class="row"><div class="label">Departemen</div><div class="value">${d.dept}</div></div>
-      <div class="row"><div class="label">Deskripsi</div><div class="value">${d.desc}</div></div>
-      <div class="row"><div class="label">Brand</div><div class="value">${d.brand}</div></div>
-    </div>
+    <table class="card-table">
+      <tr><th>REQ ID</th><td>${d.req}</td></tr>
+      <tr><th>Entity</th><td>${d.entity}</td></tr>
+      <tr><th>Nama</th><td>${d.name}</td></tr>
+      <tr><th>Departemen</th><td>${d.dept}</td></tr>
+      <tr><th>Deskripsi</th><td>${d.desc}</td></tr>
+      <tr><th>Brand</th><td>${d.brand}</td></tr>
+    </table>
   </div>`;
 }
 
