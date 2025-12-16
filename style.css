@@ -51,3 +51,10 @@ button {
   color: red;
   text-align: center;
 }
+.report-btn {
+  background: #dc3545; /* merah */
+}
+
+.list-btn {
+  background: #6f42c1; /* ungu */
+}
