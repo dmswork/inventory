@@ -1,6 +1,4 @@
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   font-family: "Segoe UI", Arial, sans-serif;
@@ -8,6 +6,7 @@ body {
   margin: 0;
 }
 
+/* ===== CONTAINER ===== */
 .container {
   max-width: 460px;
   margin: 40px auto;
@@ -19,15 +18,26 @@ body {
 
 h2 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
+  color: #2c3e50;
 }
 
+/* ===== INPUT (RESPONSIVE & PAS) ===== */
 input {
-  width: 90%;
+  width: 100%;
+  max-width: 360px;   /* tidak kepanjangan di PC */
   padding: 12px;
-  margin-bottom: 12px;
+  margin: 0 auto 12px auto;
+  display: block;
   border-radius: 8px;
   border: 1px solid #dcdfe6;
+  font-size: 15px;
+  text-align: center;
+}
+
+input:focus {
+  outline: none;
+  border-color: #007bff;
 }
 
 /* ===== BUTTON BASE ===== */
@@ -42,15 +52,13 @@ button {
   cursor: pointer;
 }
 
-/* ===== BUTTON COLOR ===== */
+button:hover { opacity: 0.92; }
+
+/* ===== BUTTON COLORS ===== */
 .btn-search { background: #007bff; }
 .btn-scan   { background: #28a745; }
 .btn-report { background: #dc3545; }
 .btn-list   { background: #6f42c1; }
-
-button:hover {
-  opacity: 0.9;
-}
 
 /* ===== SCANNER ===== */
 #reader {
@@ -74,9 +82,7 @@ button:hover {
   text-align: center;
 }
 
-.card-body {
-  padding: 16px;
-}
+.card-body { padding: 16px; }
 
 .data-row {
   display: flex;
@@ -85,9 +91,7 @@ button:hover {
   border-bottom: 1px dashed #ddd;
 }
 
-.data-row:last-child {
-  border-bottom: none;
-}
+.data-row:last-child { border-bottom: none; }
 
 .label {
   font-weight: 600;
@@ -100,6 +104,7 @@ button:hover {
   max-width: 60%;
 }
 
+/* ===== ERROR ===== */
 .error {
   margin-top: 15px;
   padding: 12px;
