@@ -41,19 +41,22 @@ function cariAset() {
   hasil.innerHTML = data
     ? `
       <div class="card">
-        <p><b>REQ_ID:</b> ${data.req_id}</p>
-        <p><b>ENTITY:</b> ${data.entity}</p>
-        <p><b>ENTITY NAME:</b> ${data.entity_name}</p>
-        <p><b>DEPT:</b> ${data.dept}</p>
-        <p><b>DESKRIPSI:</b> ${data.desc}</p>
-        <p><b>BRAND:</b> ${data.brand}</p>
+        <div class="card-header">DETAIL ASET</div>
+        <div class="card-body">
+          <div class="data-row"><div class="label">REQ ID</div><div class="value">${data.req_id}</div></div>
+          <div class="data-row"><div class="label">Entity</div><div class="value">${data.entity}</div></div>
+          <div class="data-row"><div class="label">Entity Name</div><div class="value">${data.entity_name}</div></div>
+          <div class="data-row"><div class="label">Departemen</div><div class="value">${data.dept}</div></div>
+          <div class="data-row"><div class="label">Deskripsi</div><div class="value">${data.desc}</div></div>
+          <div class="data-row"><div class="label">Brand</div><div class="value">${data.brand}</div></div>
+        </div>
       </div>
     `
     : `<div class="error">Data tidak ditemukan</div>`;
 }
 
 // ================================
-// SCAN BARCODE
+// SCAN BARCODE (KAMERA)
 // ================================
 let html5QrCode;
 
@@ -62,7 +65,6 @@ function bukaKamera() {
   reader.style.display = "block";
 
   html5QrCode = new Html5Qrcode("reader");
-
   html5QrCode.start(
     { facingMode: "environment" },
     { fps: 10, qrbox: { width: 250, height: 150 } },
@@ -70,7 +72,13 @@ function bukaKamera() {
       html5QrCode.stop();
       reader.style.display = "none";
 
-      document.getElementById("reqid").value = decodedText;
+      let reqId = decodedText;
+      if (decodedText.includes("req_id=")) {
+        const params = new URLSearchParams(decodedText.split("?")[1]);
+        reqId = params.get("req_id");
+      }
+
+      document.getElementById("reqid").value = reqId;
       cariAset();
     }
   );
@@ -94,7 +102,7 @@ function bukaDaftar() {
 }
 
 // ================================
-// AUTO SEARCH URL
+// AUTO SEARCH DARI URL (?req_id=)
 // ================================
 window.onload = function () {
   const params = new URLSearchParams(window.location.search);
