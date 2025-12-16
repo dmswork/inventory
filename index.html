@@ -9,27 +9,27 @@
 </head>
 <body>
 
-  <div class="container">
-    <h2>Inventory Asset Cordela Inn Palembang</h2>
+<div class="container">
+  <h2>Inventory Asset Cordela Inn Palembang</h2>
 
-    <div class="scan-box">
-      <input
-        type="text"
-        id="reqid"
-        placeholder="Scan / Masukkan REQ_ID"
-        autofocus
-        onkeydown="if(event.key==='Enter') cariAset()"
-      >
-      <button onclick="cariAset()">Cari</button>
-    </div>
+  <input
+    type="text"
+    id="reqid"
+    placeholder="Scan / Masukkan REQ_ID"
+    autofocus
+    onkeydown="if(event.key==='Enter') cariAset()"
+  >
 
-    <div id="hasil"></div>
+  <button onclick="cariAset()">Cari</button>
+  <button class="scan-btn" onclick="bukaKamera()">Scan Barcode</button>
 
-    <div class="footer">
-      Asset Inventory System
-    </div>
-  </div>
+  <div id="reader"></div>
+  <div id="hasil"></div>
+</div>
 
-  <script src="script.js"></script>
+<!-- Library scanner -->
+<script src="https://unpkg.com/html5-qrcode"></script>
+<script src="script.js"></script>
+
 </body>
 </html>
