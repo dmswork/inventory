@@ -63,3 +63,15 @@ function cariAset() {
     `
     : `<div class="error">Data tidak ditemukan</div>`;
 }
+// ================================
+// AUTO SEARCH DARI URL (?req_id=)
+// ================================
+window.onload = function () {
+  const params = new URLSearchParams(window.location.search);
+  const reqId = params.get("req_id");
+
+  if (reqId) {
+    document.getElementById("reqid").value = reqId;
+    cariAset();
+  }
+};
