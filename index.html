@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Inventory Aset</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,16 +12,17 @@
   <h2>Inventory Aset</h2>
 
   <input
-    id="reqid"
     type="text"
+    id="reqid"
     placeholder="Scan / Masukkan REQ_ID"
+    autofocus
     onkeydown="if(event.key==='Enter') cariAset()"
   >
 
-  <button class="btn search" onclick="cariAset()">Cari Aset</button>
-  <button class="btn scan" onclick="bukaKamera()">Scan Barcode</button>
-  <button class="btn report" onclick="bukaLaporan()">Laporkan Kerusakan</button>
-  <button class="btn list" onclick="bukaDaftar()">Daftar Barang</button>
+  <button class="btn-search" onclick="cariAset()">Cari Aset</button>
+  <button class="btn-scan" onclick="bukaKamera()">Scan Barcode</button>
+  <button class="btn-report" onclick="bukaLaporan()">Laporkan Kerusakan</button>
+  <button class="btn-list" onclick="bukaDaftar()">Daftar Barang</button>
 
   <div id="reader"></div>
   <div id="hasil"></div>
