@@ -1,222 +1,36 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<title>Inventory Aset</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<style>
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f2f4f8;
-}
-
-/* ===== MOBILE FIRST ===== */
-.container {
-  min-height: 100vh;
-  background: #ffffff;
-  padding: 16px;
-}
-
-h2 {
-  text-align: center;
-  margin-bottom: 16px;
-  color: #2c3e50;
-}
-
-/* INPUT */
-input {
-  width: 100%;
-  padding: 14px;
-  font-size: 16px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  margin-bottom: 12px;
-  text-align: center;
-}
-
-/* BUTTON (ANTI HILANG WARNA) */
-button {
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 10px;
-  border: none;
-  border-radius: 8px;
-  font-size: 15px;
-  color: #ffffff;
-  cursor: pointer;
-  background-color: #999; /* fallback */
-}
-
-/* WARNA TOMBOL */
-button.btn-search { background-color: #007bff !important; }
-button.btn-scan   { background-color: #28a745 !important; }
-button.btn-report { background-color: #dc3545 !important; }
-button.btn-list   { background-color: #6f42c1 !important; }
-
-button:active { opacity: 0.85; }
-
-#reader {
-  display: none;
-  margin-top: 15px;
-}
-
-/* RESULT CARD */
-.card {
-  margin-top: 16px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.card-header {
-  background-color: #007bff;
-  color: #fff;
-  padding: 12px;
-  text-align: center;
-  font-weight: bold;
-}
-
-.card-body {
-  padding: 14px;
-}
-
-.row {
-  margin-bottom: 10px;
-}
-
-.label {
-  font-size: 13px;
-  color: #666;
-}
-
-.value {
-  font-size: 15px;
-  font-weight: bold;
-  word-break: break-word;
-}
-
-/* ERROR */
-.error {
-  margin-top: 15px;
-  padding: 12px;
-  background: #fdecea;
-  color: #b71c1c;
-  border-radius: 8px;
-  text-align: center;
-}
-
-/* ===== MODE PC ===== */
-@media (min-width: 768px) {
-  .container {
-    max-width: 480px;
-    margin: 40px auto;
-    border-radius: 14px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <title>Inventory Aset</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <div class="container">
   <h2>Inventory Aset</h2>
 
-  <input id="reqid" placeholder="Scan / Masukkan REQ_ID">
+  <input
+    type="text"
+    id="reqid"
+    placeholder="Scan / Masukkan REQ_ID"
+    autofocus
+    onkeydown="if(event.key==='Enter') cariAset()"
+  >
 
-  <button class="btn-search" onclick="cariAset()">Cari Aset</button>
-  <button class="btn-scan" onclick="bukaKamera()">Scan Barcode</button>
-  <button class="btn-report" onclick="bukaLaporan()">Laporkan Kerusakan</button>
-  <button class="btn-list" onclick="bukaDaftar()">Daftar Barang</button>
+  <button onclick="cariAset()">Cari</button>
+  <button class="scan-btn" onclick="bukaKamera()">Scan Barcode</button>
+  <button class="report-btn" onclick="bukaLaporan()">Laporkan Kerusakan</button>
+  <button class="list-btn" onclick="bukaDaftar()">Daftar Barang</button>
 
   <div id="reader"></div>
   <div id="hasil"></div>
 </div>
 
+<!-- Scanner library -->
 <script src="https://unpkg.com/html5-qrcode"></script>
-
-<script>
-const sheetURL =
-"https://docs.google.com/spreadsheets/d/e/2PACX-1vT7AvSKtZDxCSOyCviX5IIRj57OAD06nbiPVuHWX02-urpQmyQkYAxlsmT87zD0bzVDZvbPjrb1sL-X/pub?output=csv";
-
-let dataAset = [];
-
-fetch(sheetURL)
-  .then(r => r.text())
-  .then(csv => {
-    const rows = csv.split("\n");
-    for (let i = 1; i < rows.length; i++) {
-      const c = rows[i].split(",");
-      if (c.length < 7) continue;
-      dataAset.push({
-        req: c[0].trim(),
-        entity: c[2],
-        name: c[3],
-        dept: c[4],
-        desc: c[5],
-        brand: c[6]
-      });
-    }
-  });
-
-function cariAset() {
-  const id = reqid.value.trim();
-  const h = document.getElementById("hasil");
-  const d = dataAset.find(x => x.req === id);
-
-  if (!d) {
-    h.innerHTML = `<div class="error">Data tidak ditemukan</div>`;
-    return;
-  }
-
-  h.innerHTML = `
-  <div class="card">
-    <div class="card-header">DETAIL ASET</div>
-    <div class="card-body">
-      <div class="row"><div class="label">REQ ID</div><div class="value">${d.req}</div></div>
-      <div class="row"><div class="label">Entity</div><div class="value">${d.entity}</div></div>
-      <div class="row"><div class="label">Nama</div><div class="value">${d.name}</div></div>
-      <div class="row"><div class="label">Departemen</div><div class="value">${d.dept}</div></div>
-      <div class="row"><div class="label">Deskripsi</div><div class="value">${d.desc}</div></div>
-      <div class="row"><div class="label">Brand</div><div class="value">${d.brand}</div></div>
-    </div>
-  </div>`;
-}
-
-let qr;
-function bukaKamera() {
-  reader.style.display = "block";
-  qr = new Html5Qrcode("reader");
-  qr.start(
-    { facingMode: "environment" },
-    { fps: 10, qrbox: 250 },
-    t => {
-      qr.stop();
-      reader.style.display = "none";
-      reqid.value = t;
-      cariAset();
-    }
-  );
-}
-
-function bukaLaporan() {
-  window.open(
-    "https://docs.google.com/forms/d/e/1FAIpQLSfNmNSnM3ywD-7QbuQ6h6hAI1xx9P6sbruGXKYGrbn3Y37GPA/viewform",
-    "_blank"
-  );
-}
-
-function bukaDaftar() {
-  window.open(
-    "https://docs.google.com/spreadsheets/d/1fXFZYyHJnhDpVaMJ8P5UjjZdVe5mYwzz7rxoMmvoHCQ/edit",
-    "_blank"
-  );
-}
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
