@@ -4,15 +4,14 @@
 
 body {
   font-family: "Segoe UI", Arial, sans-serif;
-  background: linear-gradient(135deg, #eef2f7, #f9fbfd);
+  background: #eef2f7;
   margin: 0;
-  padding: 0;
 }
 
 .container {
   max-width: 460px;
   margin: 40px auto;
-  background: #ffffff;
+  background: #fff;
   padding: 24px;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.08);
@@ -21,7 +20,6 @@ body {
 h2 {
   text-align: center;
   margin-bottom: 20px;
-  color: #2c3e50;
 }
 
 input {
@@ -30,36 +28,29 @@ input {
   margin-bottom: 12px;
   border-radius: 8px;
   border: 1px solid #dcdfe6;
-  font-size: 15px;
 }
 
-input:focus {
-  outline: none;
-  border-color: #007bff;
-}
-
-/* ===== BUTTON ===== */
+/* ===== BUTTON BASE ===== */
 button {
   width: 100%;
   padding: 12px;
   margin-bottom: 10px;
   border: none;
-  color: #fff;
-  cursor: pointer;
   border-radius: 8px;
+  color: #fff;
   font-size: 15px;
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  cursor: pointer;
 }
+
+/* ===== BUTTON COLOR ===== */
+.btn-search { background: #007bff; }
+.btn-scan   { background: #28a745; }
+.btn-report { background: #dc3545; }
+.btn-list   { background: #6f42c1; }
 
 button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  opacity: 0.9;
 }
-
-button:nth-child(3) { background: #007bff; } /* Cari */
-.scan-btn { background: #28a745; }
-.report-btn { background: #dc3545; }
-.list-btn { background: #6f42c1; }
 
 /* ===== SCANNER ===== */
 #reader {
@@ -91,8 +82,7 @@ button:nth-child(3) { background: #007bff; } /* Cari */
   display: flex;
   justify-content: space-between;
   padding: 8px 0;
-  border-bottom: 1px dashed #e0e0e0;
-  font-size: 14px;
+  border-bottom: 1px dashed #ddd;
 }
 
 .data-row:last-child {
@@ -100,8 +90,8 @@ button:nth-child(3) { background: #007bff; } /* Cari */
 }
 
 .label {
-  color: #6c757d;
   font-weight: 600;
+  color: #6c757d;
 }
 
 .value {
@@ -110,7 +100,6 @@ button:nth-child(3) { background: #007bff; } /* Cari */
   max-width: 60%;
 }
 
-/* ===== ERROR ===== */
 .error {
   margin-top: 15px;
   padding: 12px;
