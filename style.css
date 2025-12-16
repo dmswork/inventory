@@ -16,9 +16,14 @@ h2 {
 }
 
 input {
-  width: 80%;
-  padding: 10px;
-  margin-bottom: 10px;
+  width: 80%;           /* ← ubah di sini */
+  padding: 12px;
+  margin: 0 auto 12px auto;
+  display: block;
+  border-radius: 8px;
+  border: 1px solid #dcdfe6;
+  font-size: 15px;
+  text-align: center;
 }
 
 button {
