@@ -1,5 +1,5 @@
 // ================================
-// KONFIGURASI GOOGLE SHEET (CSV)
+// GOOGLE SHEET (CSV)
 // ================================
 const sheetURL =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vT7AvSKtZDxCSOyCviX5IIRj57OAD06nbiPVuHWX02-urpQmyQkYAxlsmT87zD0bzVDZvbPjrb1sL-X/pub?output=csv";
@@ -7,69 +7,89 @@ const sheetURL =
 let dataAset = [];
 
 // ================================
-// LOAD DATA DARI GOOGLE SHEET
+// LOAD DATA
 // ================================
 fetch(sheetURL)
   .then(res => res.text())
   .then(csv => {
-    const lines = csv.split("\n");
-    
-    for (let i = 1; i < lines.length; i++) {
-      const row = lines[i].split(",");
-
-      if (row.length < 7) continue;
+    const rows = csv.split("\n");
+    for (let i = 1; i < rows.length; i++) {
+      const col = rows[i].split(",");
+      if (col.length < 7) continue;
 
       dataAset.push({
-        req_id: row[0].trim(),
-        no: row[1],
-        entity: row[2],
-        entity_name: row[3],
-        dept: row[4],
-        desc: row[5],
-        brand: row[6]
+        req_id: col[0].trim(),
+        no: col[1],
+        entity: col[2],
+        entity_name: col[3],
+        dept: col[4],
+        desc: col[5],
+        brand: col[6]
       });
     }
-
-    console.log("DATA BERHASIL DIMUAT:", dataAset.length);
-  })
-  .catch(err => {
-    console.error("GAGAL LOAD DATA:", err);
   });
 
 // ================================
-// FUNGSI CARI ASET
+// CARI ASET
 // ================================
 function cariAset() {
-  const input = document.getElementById("reqid").value.trim();
-  const hasilDiv = document.getElementById("hasil");
+  const reqid = document.getElementById("reqid").value.trim();
+  const hasil = document.getElementById("hasil");
 
-  if (!input) {
-    hasilDiv.innerHTML = `<div class="error">REQ_ID belum diisi</div>`;
-    return;
-  }
+  const data = dataAset.find(d => d.req_id === reqid);
 
-  const hasil = dataAset.find(d => d.req_id === input);
-
-  hasilDiv.innerHTML = hasil
+  hasil.innerHTML = data
     ? `
       <div class="card">
-        <p><b>REQ_ID:</b> ${hasil.req_id}</p>
-        <p><b>ENTITY:</b> ${hasil.entity}</p>
-        <p><b>ENTITY NAME:</b> ${hasil.entity_name}</p>
-        <p><b>DEPT:</b> ${hasil.dept}</p>
-        <p><b>DESKRIPSI:</b> ${hasil.desc}</p>
-        <p><b>BRAND:</b> ${hasil.brand}</p>
+        <p><b>REQ_ID:</b> ${data.req_id}</p>
+        <p><b>ENTITY:</b> ${data.entity}</p>
+        <p><b>ENTITY NAME:</b> ${data.entity_name}</p>
+        <p><b>DEPT:</b> ${data.dept}</p>
+        <p><b>DESKRIPSI:</b> ${data.desc}</p>
+        <p><b>BRAND:</b> ${data.brand}</p>
       </div>
     `
     : `<div class="error">Data tidak ditemukan</div>`;
 }
+
 // ================================
-// AUTO SEARCH DARI URL (?req_id=)
+// SCAN BARCODE VIA KAMERA
+// ================================
+let html5QrCode;
+
+function bukaKamera() {
+  const reader = document.getElementById("reader");
+  reader.style.display = "block";
+
+  html5QrCode = new Html5Qrcode("reader");
+
+  html5QrCode.start(
+    { facingMode: "environment" },
+    { fps: 10, qrbox: { width: 250, height: 150 } },
+    (decodedText) => {
+      html5QrCode.stop();
+      reader.style.display = "none";
+
+      let reqId = decodedText;
+
+      // jika barcode berupa URL
+      if (decodedText.includes("req_id=")) {
+        const params = new URLSearchParams(decodedText.split("?")[1]);
+        reqId = params.get("req_id");
+      }
+
+      document.getElementById("reqid").value = reqId;
+      cariAset();
+    }
+  );
+}
+
+// ================================
+// AUTO SEARCH DARI URL
 // ================================
 window.onload = function () {
   const params = new URLSearchParams(window.location.search);
   const reqId = params.get("req_id");
-
   if (reqId) {
     document.getElementById("reqid").value = reqId;
     cariAset();
