@@ -53,7 +53,7 @@ function cariAset() {
 }
 
 // ================================
-// SCAN BARCODE VIA KAMERA
+// SCAN BARCODE
 // ================================
 let html5QrCode;
 
@@ -70,22 +70,31 @@ function bukaKamera() {
       html5QrCode.stop();
       reader.style.display = "none";
 
-      let reqId = decodedText;
-
-      // jika barcode berupa URL
-      if (decodedText.includes("req_id=")) {
-        const params = new URLSearchParams(decodedText.split("?")[1]);
-        reqId = params.get("req_id");
-      }
-
-      document.getElementById("reqid").value = reqId;
+      document.getElementById("reqid").value = decodedText;
       cariAset();
     }
   );
 }
 
 // ================================
-// AUTO SEARCH DARI URL
+// TOMBOL LINK
+// ================================
+function bukaLaporan() {
+  window.open(
+    "https://docs.google.com/forms/d/e/1FAIpQLSfNmNSnM3ywD-7QbuQ6h6hAI1xx9P6sbruGXKYGrbn3Y37GPA/viewform",
+    "_blank"
+  );
+}
+
+function bukaDaftar() {
+  window.open(
+    "https://docs.google.com/spreadsheets/d/1fXFZYyHJnhDpVaMJ8P5UjjZdVe5mYwzz7rxoMmvoHCQ/edit?gid=989863131#gid=989863131",
+    "_blank"
+  );
+}
+
+// ================================
+// AUTO SEARCH URL
 // ================================
 window.onload = function () {
   const params = new URLSearchParams(window.location.search);
@@ -95,22 +104,3 @@ window.onload = function () {
     cariAset();
   }
 };
-// ================================
-// BUKA FORM LAPORAN KERUSAKAN
-// ================================
-function bukaLaporan() {
-  window.open(
-    "https://docs.google.com/forms/d/e/1FAIpQLSfNmNSnM3ywD-7QbuQ6h6hAI1xx9P6sbruGXKYGrbn3Y37GPA/viewform",
-    "_blank"
-  );
-}
-
-// ================================
-// BUKA DAFTAR BARANG
-// ================================
-function bukaDaftar() {
-  window.open(
-    "https://docs.google.com/spreadsheets/d/1fXFZYyHJnhDpVaMJ8P5UjjZdVe5mYwzz7rxoMmvoHCQ/edit?gid=989863131#gid=989863131",
-    "_blank"
-  );
-}
