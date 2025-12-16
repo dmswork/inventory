@@ -1,4 +1,6 @@
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   font-family: "Segoe UI", Arial, sans-serif;
@@ -6,7 +8,6 @@ body {
   margin: 0;
 }
 
-/* ===== CONTAINER ===== */
 .container {
   max-width: 460px;
   margin: 40px auto;
@@ -18,26 +19,15 @@ body {
 
 h2 {
   text-align: center;
-  margin-bottom: 18px;
-  color: #2c3e50;
+  margin-bottom: 20px;
 }
 
-/* ===== INPUT (RESPONSIVE & PAS) ===== */
 input {
-  input {
-  width: 90%;
+  width: 100%;
   padding: 12px;
-  margin: 0 auto 12px auto;
-  display: block;
+  margin-bottom: 12px;
   border-radius: 8px;
   border: 1px solid #dcdfe6;
-  font-size: 15px;
-  text-align: center;
-}
-
-input:focus {
-  outline: none;
-  border-color: #007bff;
 }
 
 /* ===== BUTTON BASE ===== */
@@ -52,13 +42,15 @@ button {
   cursor: pointer;
 }
 
-button:hover { opacity: 0.92; }
-
-/* ===== BUTTON COLORS ===== */
+/* ===== BUTTON COLOR ===== */
 .btn-search { background: #007bff; }
 .btn-scan   { background: #28a745; }
 .btn-report { background: #dc3545; }
 .btn-list   { background: #6f42c1; }
+
+button:hover {
+  opacity: 0.9;
+}
 
 /* ===== SCANNER ===== */
 #reader {
@@ -82,7 +74,9 @@ button:hover { opacity: 0.92; }
   text-align: center;
 }
 
-.card-body { padding: 16px; }
+.card-body {
+  padding: 16px;
+}
 
 .data-row {
   display: flex;
@@ -91,7 +85,9 @@ button:hover { opacity: 0.92; }
   border-bottom: 1px dashed #ddd;
 }
 
-.data-row:last-child { border-bottom: none; }
+.data-row:last-child {
+  border-bottom: none;
+}
 
 .label {
   font-weight: 600;
@@ -104,7 +100,6 @@ button:hover { opacity: 0.92; }
   max-width: 60%;
 }
 
-/* ===== ERROR ===== */
 .error {
   margin-top: 15px;
   padding: 12px;
@@ -112,62 +107,4 @@ button:hover { opacity: 0.92; }
   color: #b71c1c;
   border-radius: 8px;
   text-align: center;
-}
-/* ===============================
-   MOBILE FIX (HP)
-================================ */
-@media (max-width: 600px) {
-
-  .container {
-    margin: 12px;
-    padding: 16px;
-  }
-
-  h2 {
-    font-size: 20px;
-  }
-
-  input {
-    max-width: 100%;
-    font-size: 14px;
-  }
-
-  button {
-    padding: 10px;
-    font-size: 14px;
-  }
-
-  .card {
-    margin-top: 15px;
-  }
-
-  .card-header {
-    font-size: 14px;
-    padding: 10px;
-  }
-
-  .card-body {
-    padding: 12px;
-  }
-
-  .data-row {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .label {
-    font-size: 13px;
-    margin-bottom: 2px;
-  }
-
-  .value {
-    font-size: 14px;
-    max-width: 100%;
-    text-align: left;
-    word-break: break-word;
-  }
-
-  #reader {
-    width: 100% !important;
-  }
 }
