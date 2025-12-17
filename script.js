@@ -77,7 +77,7 @@ function cariAset() {
       <div class="item"><div class="label">Entity</div><div class="value">${d.entity}</div></div>
       <div class="item"><div class="label">Nama</div><div class="value">${d.name}</div></div>
       <div class="item"><div class="label">Departemen</div><div class="value">${d.dept}</div></div>
-      <div class="item"><div class="label">Deskripsi</div><div class="value">${d.desc}</div></div>
+      <div class="item"><div class="label">Location</div><div class="value">${d.desc}</div></div>
       <div class="item"><div class="label">Brand</div><div class="value">${d.brand}</div></div>
     </div>
   </div>`;
